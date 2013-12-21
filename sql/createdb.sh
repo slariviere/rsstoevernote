@@ -1,2 +1,3 @@
 #!/bin/bash
-sqlite3 ../rsstoevernote/rsstoevernote.db < rsstoevernoteDB.sql
+echo $rsstoevernotedb
+sqlite3 ${rsstoevernotedb} < sql/rsstoevernoteDB.sql
