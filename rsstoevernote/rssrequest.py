@@ -1,6 +1,4 @@
-import httplib
-from urlparse import urlparse
-
+import requests
 
 # Get the requested url
 class RSSRequest(object):
@@ -23,20 +21,21 @@ class RSSRequest(object):
 
     def __init__(self, url):
         super(RSSRequest, self).__init__()
-        self.url = urlparse(url)
+        self.url = url
+        self.r = requests.get(self.url, headers=self.http_headers)
 
-        # Get the requested file
-        self.httpconn = httplib.HTTPConnection(self.url.netloc, timeout=5)
-        self.httpconn.request('GET', self.url.path, headers=self.http_headers)
-
+    # Get the fetched URL
     def getUrl(self):
         return self.url
 
-    def getUserAgent(self):
-        return self.user_agent
+    # Get the http status code (4xx etc.)
+    def getHttpCode(self):
+        return self.r.status_code
 
-    def getHttpHeaders(self):
-        return self.http_headers
+    # Get the http reason (Not found)
+    def getHttpReason(self):
+        return self.r.reason
 
+    # Get the raw http response
     def getRawRessFeed(self):
-        return self.httpconn.getresponse().read()
+        return self.r.text
