@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from BeautifulSoup import BeautifulSoup
 
 class EvernoteHtml(object):
     """docstring for EvernoteHtml"""
