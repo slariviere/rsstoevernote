@@ -26,6 +26,6 @@ class EvernoteHtml(object):
     def __removeInlineElements(self):
         # Delete the prohibited inline elements
         # Might break format of the original rss item
-        for tag in self.soup():
-            for attribute in self.prohibitedinlineelements:
-                del tag[attribute]
+        # for tag in self.soup():
+        #     for attribute in self.prohibitedinlineelements:
+        #         del tag[attribute]
